@@ -23,7 +23,6 @@ export function LoginForm({
     try {
     //   const res = await login(data).unwrap();
     //   console.log(res);
-    console.log(data)
     } catch (err:any) {
       console.error(err);
 
