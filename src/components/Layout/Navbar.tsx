@@ -18,7 +18,7 @@ export default function Component() {
            <Link to='/contact' className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75">Contact</Link>
         </li>
         <li>
-           <Link to='/faq' className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75">FAQ</Link>
+           <Link to='/FAQ' className="text-gray-500 transition hover:text-gray-500/75 dark:text-white dark:hover:text-white/75">FAQ</Link>
         </li>
     </>
 
