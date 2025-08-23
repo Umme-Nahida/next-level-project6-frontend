@@ -24,10 +24,10 @@ export default function SelectInput({...field}) {
           <SelectValue placeholder="Select framework" />
         </SelectTrigger>
         <SelectContent>
-          <SelectItem value="Rider">Rider</SelectItem>
-          <SelectItem value="Driver">Driver</SelectItem>
-          <SelectItem value="Admin">Admin</SelectItem>
-          <SelectItem value="Super-Admin">Super Admin</SelectItem>
+          <SelectItem value="RIDER">Rider</SelectItem>
+          <SelectItem value="DRIVER">Driver</SelectItem>
+          <SelectItem value="ADMIN">Admin</SelectItem>
+          <SelectItem value="SUPER_ADMIN">Super Admin</SelectItem>
         </SelectContent>
       </Select>
     </div>

@@ -11,11 +11,13 @@ import {
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { useForm } from "react-hook-form";
-import { Link} from "react-router";
+import { Link, useNavigate} from "react-router";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Password from "../ui/Password";
 import SelectInput from "../ui/SelectInput";
+import { toast } from "sonner";
+import { useRegisterMutation } from "@/Redux/Features/authApi/authApi";
 
 // const registerSchema = z
 //   .object({
@@ -51,8 +53,8 @@ export function RegisterForm({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
-//   const [register] = useRegisterMutation();
-//   const navigate = useNavigate();
+  const [register] = useRegisterMutation();
+  const navigate = useNavigate();
 //   const [zodErrs, setZodeErrs] = useState("")
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -74,11 +76,11 @@ export function RegisterForm({
 
       console.log(userInfo)
 
-    //   const res = await register(userInfo)
-    //   if (res.data || !res.error) {
-    //     toast.success(res.data?.message || "user created successfully")
-    //     navigate("/login")
-    //   }
+      const res = await register(userInfo)
+      if (res.data || !res.error) {
+        toast.success(res.data?.message || "user created successfully")
+        navigate("/login")
+      }
 
     } catch (error: any) {
       if (error.status === 400 && error.data.errorSources && error.data.message === "ZodError") {
