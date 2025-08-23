@@ -66,7 +66,7 @@ export function RegisterForm({
   })
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    try {
+    
       const userInfo = {
         name: data.name,
         email: data.email,
@@ -74,27 +74,39 @@ export function RegisterForm({
         role: data.role
       };
 
-      console.log(userInfo)
-
       const res = await register(userInfo)
+      // if success
+      console.log(res)
       if (res.data || !res.error) {
         toast.success(res.data?.message || "user created successfully")
         navigate("/login")
       }
 
-    } catch (error: any) {
-      if (error.status === 400 && error.data.errorSources && error.data.message === "ZodError") {
+      // if error
+      if (res.error && typeof res.error === "object" && "data" in res.error) {
+        // Type assertion to access error properties
+        const error = res.error as { data?: any; status?: number };
+        toast.error(error.data?.message);
 
-        const errs = error.data.errorSources;
+        if (
+          error.status === 400 &&
+          error.data?.errorSources &&
+          error.data?.message === "ZodError"
+        ) {
+          const errs = error.data.errorSources;
 
-          errs.forEach((err: { path: string; message: string }) => {
-            form.setError(err.path as any, {
-              type: "server",
-              message: err.message,
+          if (errs) {
+            errs.forEach((err: { path: string; message: string }) => {
+              form.setError(err.path as any, {
+                type: "server",
+                message: err.message,
+              });
             });
-          });
+          }
+        }
       }
-    }
+
+   
   };
 
   return (

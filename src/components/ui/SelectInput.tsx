@@ -17,7 +17,7 @@ export default function SelectInput({...field}) {
       <Label htmlFor={id}>
         Required select <span className="text-destructive">*</span>
       </Label>
-      <Select defaultValue="Rider" 
+      <Select defaultValue="RIDER" 
           onValueChange={field.onChange}
           value={field.value} required>
         <SelectTrigger id={id}>
