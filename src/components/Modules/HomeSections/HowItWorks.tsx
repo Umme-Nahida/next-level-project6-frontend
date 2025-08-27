@@ -13,19 +13,12 @@ import {
 } from "lucide-react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 
-// import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { Tabs,TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Link } from "react-router"
 
-// -----------------------------------------------------------------------------
-// HowItWorks Component — Fully responsive, role-aware (Rider / Driver / Admin)
-// - TailwindCSS for styling
-// - shadcn/ui for primitives
-// - framer-motion for subtle animations
-// - lucide-react icons
-// -----------------------------------------------------------------------------
 
 const container = {
   hidden: { opacity: 0, y: 12 },

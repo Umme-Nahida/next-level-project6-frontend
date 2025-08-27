@@ -39,7 +39,7 @@ export default function RiderForm() {
                 toast.success(res.data.message || "Ride Request created successfully")
             }
             if (res.error) {
-                toast.error(res.error.data.message || "Ride Request has been failed")
+                toast.error((res.error as any).data.message || "Ride Request has been failed")
             }
             console.log("Ride Requested:", rideRequestInfo);
 
@@ -75,7 +75,7 @@ export default function RiderForm() {
             toast.success(res.data.message || "Ride Request created successfully")
         }
         if (res.error) {
-            toast.error(res.error.data.message || "Ride Request has been failed")
+            toast.error((res.error as any).data.message || "Ride Request has been failed")
         }
         console.log("Ride Requested:", rideRequestInfo);
     };

@@ -1,5 +1,4 @@
 
-
 const AdminProfile = () => {
     return (
         <div>

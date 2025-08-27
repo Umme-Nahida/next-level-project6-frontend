@@ -7,7 +7,6 @@ import {
   DialogDescription,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 
 export default function RideRequestForm() {
@@ -30,6 +29,7 @@ export default function RideRequestForm() {
     // const data = await res.json();
     // setFare(data.fare);
     setOpen(true)
+    console.log(setFare)
   };
 
   const handleRequestRide = async () => {
@@ -38,15 +38,15 @@ export default function RideRequestForm() {
         destinationLocation:destination
     }
 
-    const res = await riderRequest(rideRequestInfo)
-    console.log(res)
-    if(res.data){
-        toast.success(res.data.message || "Ride Request created successfully")
-    }
-   if(res.error){
-        toast.error(res.error.data.message || "Ride Request has been failed")
-    }
-    console.log("Ride Requested:", rideRequestInfo);
+  const res = await riderRequest(rideRequestInfo)
+  console.log(res)
+  if ((res as any).data) {
+      toast.success((res as any).data.message || "Ride Request created successfully")
+  }
+  if ((res as any).error) {
+      toast.error((res as any).error?.data?.message || "Ride Request has been failed")
+  }
+  console.log("Ride Requested:", rideRequestInfo);
   };
 
   return (
