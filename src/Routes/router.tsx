@@ -12,6 +12,9 @@ import { generateRoutes } from "@/Utils/generateRoutes";
 import { createBrowserRouter } from "react-router";
 import { adminSidebarItems } from "./AdminSidebarItems";
 import AboutPage from "@/pages/About";
+import FAQPage from "@/pages/FAQ";
+import { FeaturesPage } from "@/pages/Feature";
+import { Contact } from "@/pages/Contact";
 
 
 const router = createBrowserRouter([
@@ -30,6 +33,18 @@ const router = createBrowserRouter([
       {
         Component:AboutPage,
         path:'/about'
+      },
+      {
+        Component:FAQPage,
+        path:'/FAQ'
+      },
+      {
+        Component:FeaturesPage,
+        path:'/feature'
+      },
+      {
+        Component:Contact,
+        path:'/contact'
       },
     ]
   },
