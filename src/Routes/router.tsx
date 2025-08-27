@@ -1,10 +1,16 @@
 import App from "@/App";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
+import AdminProfile from "@/components/Modules/Admin/AdminProfile";
+import Analytics from "@/components/Modules/Admin/Analytics";
 import RiderForm from "@/components/Modules/Rider/RiderForm";
+import RiderHistory from "@/components/Modules/Rider/RiderHistory";
+import UserProfile from "@/components/Modules/Rider/UserProfile";
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
+import { generateRoutes } from "@/Utils/generateRoutes";
 import { createBrowserRouter } from "react-router";
+import { adminSidebarItems } from "./AdminSidebarItems";
 
 
 const router = createBrowserRouter([
@@ -24,15 +30,24 @@ const router = createBrowserRouter([
   },
   {
     Component:DashboardLayout,
-    path: "/",
+    path: "/admin",
+    children:[...generateRoutes(adminSidebarItems)]
+  },
+  {
+    Component:DashboardLayout,
+    path: "/user",
     children:[
       {
-        Component:Profile,
-        path:'/profile'
+        Component:UserProfile,
+        path:'profile'
       },
       {
         Component:Analytics,
-        path:'/analytics'
+        path:'analytics'
+      },
+      {
+        Component:RiderHistory,
+        path:'riderHistory'
       }
     ]
   },
