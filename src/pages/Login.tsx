@@ -1,6 +1,5 @@
-import TravelLogin from "@/assets/Images/imgLogin.jpg";
 import { Link } from "react-router";
-import Logo from "@/assets/Icons/logo";
+import Logo from "@/Icons/logo";
 import { LoginForm } from "@/components/Authentication/LoginForm";
 
 export default function Login() {
@@ -9,7 +8,7 @@ export default function Login() {
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
           <Link to="/" className="flex items-center gap-2 font-medium">
-            <Logo />
+            <Logo/>
           </Link>
         </div>
         <div className="flex flex-1 items-center justify-center">
@@ -20,7 +19,7 @@ export default function Login() {
       </div>
       <div className="relative hidden bg-muted lg:block">
         <img
-          src={TravelLogin}
+          src="/assets/Images/imgLogin.jpg"
           alt="Image"
           className="absolute inset-0 h-full w-full object-cover dark:brightness-[0.8]"
         />
