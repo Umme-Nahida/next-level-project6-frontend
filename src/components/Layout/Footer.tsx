@@ -2,7 +2,7 @@ import Logo from "@/assets/Icons/logo";
 
 const Footer = () => {
     return (
-        <footer className="bg-sidebar-accent dark:bg-gray-900 mt-5">
+        <footer className="bg-sidebar-accent dark:bg-gray-900">
             <div className="container mx-auto  space-y-8 px-4 py-16 sm:px-6 lg:space-y-16 lg:px-8">
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <div className="text-primary dark:text-ring flex items-center justify-start">
