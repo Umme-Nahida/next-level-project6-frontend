@@ -3,7 +3,6 @@
 
 import { config } from "@/Config/config";
 import axios from "axios";
-import { any } from "zod";
 
 export const instanceAxios = axios.create({
   baseURL: config.baseUrl,

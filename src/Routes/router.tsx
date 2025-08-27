@@ -1,6 +1,5 @@
 import App from "@/App";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
-import AdminProfile from "@/components/Modules/Admin/AdminProfile";
 import Analytics from "@/components/Modules/Admin/Analytics";
 import RiderForm from "@/components/Modules/Rider/RiderForm";
 import RiderHistory from "@/components/Modules/Rider/RiderHistory";
