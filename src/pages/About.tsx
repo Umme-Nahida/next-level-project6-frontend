@@ -5,13 +5,8 @@ import { Car, MapPinned, ShieldCheck, Clock, TrendingUp, Users, PhoneCall, Spark
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 import { Separator } from "@/components/ui/separator";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-
-// ✅ Fully responsive About page for a Ride Management project
-// Tech: React + Tailwind + shadcn/ui + Redux + Framer Motion + lucide-react
-// Drop this file into your routes/pages and import it normally.
 
 const stats = [
   { label: "Active Drivers", value: "1.2k+", Icon: Users },
@@ -150,6 +145,26 @@ export default function AboutPage() {
         </div>
       </section>
 
+       {/* Team */}
+      <section className="container mx-auto px-4 pb-10 md:pb-16">
+        <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center">Built by a focused team</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+          {team.map((m, i) => (
+            <Card key={i} className="rounded-2xl">
+              <CardContent className="p-6 flex items-center gap-4">
+                <Avatar className="h-12 w-12">
+                  {m.img ? <AvatarImage src={m.img} alt={m.name} /> : <AvatarFallback>{m.initials}</AvatarFallback>}
+                </Avatar>
+                <div>
+                  <div className="font-medium">{m.name}</div>
+                  <div className="text-sm text-slate-500">{m.role}</div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+      </section>
+
       {/* Timeline */}
       <section className="container mx-auto px-4 pb-10 md:pb-16">
         <div className="max-w-4xl mx-auto">
@@ -172,86 +187,6 @@ export default function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* Tech Stack */}
-      <section className="container mx-auto px-4 pb-10 md:pb-16">
-        <Card className="max-w-5xl mx-auto rounded-2xl">
-          <CardHeader>
-            <CardTitle>Tech We Love</CardTitle>
-            <CardDescription>Modern, modular, and production‑ready.</CardDescription>
-          </CardHeader>
-          <CardContent className="flex flex-wrap gap-2">
-            {[
-              "React",
-              "Redux Toolkit",
-              "TypeScript (optional)",
-              "Tailwind CSS",
-              "shadcn/ui",
-              "Framer Motion",
-              "Node & Express",
-              "MongoDB/Postgres",
-              "Stripe (payments)",
-              "Map SDKs (Mapbox/Google)",
-            ].map((t) => (
-              <Badge key={t} variant="secondary" className="rounded-xl px-3 py-1 text-sm">
-                {t}
-              </Badge>
-            ))}
-          </CardContent>
-        </Card>
-      </section>
-
-      {/* Team */}
-      <section className="container mx-auto px-4 pb-10 md:pb-16">
-        <h2 className="text-2xl md:text-3xl font-semibold mb-6 text-center">Built by a focused team</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {team.map((m, i) => (
-            <Card key={i} className="rounded-2xl">
-              <CardContent className="p-6 flex items-center gap-4">
-                <Avatar className="h-12 w-12">
-                  {m.img ? <AvatarImage src={m.img} alt={m.name} /> : <AvatarFallback>{m.initials}</AvatarFallback>}
-                </Avatar>
-                <div>
-                  <div className="font-medium">{m.name}</div>
-                  <div className="text-sm text-slate-500">{m.role}</div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section className="container mx-auto px-4 pb-10 md:pb-16">
-        <Card className="max-w-4xl mx-auto rounded-2xl">
-          <CardHeader>
-            <CardTitle>FAQ</CardTitle>
-            <CardDescription>Quick answers about {appName}.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <Accordion type="single" collapsible>
-              <AccordionItem value="item-1">
-                <AccordionTrigger>Does it work on mobile and desktop?</AccordionTrigger>
-                <AccordionContent>
-                  Yes — the UI is fully responsive with Tailwind and accessible components from shadcn/ui.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-2">
-                <AccordionTrigger>Can I integrate with my current backend?</AccordionTrigger>
-                <AccordionContent>
-                  Absolutely. Use our modular services and REST/GraphQL endpoints, or plug only the parts you need.
-                </AccordionContent>
-              </AccordionItem>
-              <AccordionItem value="item-3">
-                <AccordionTrigger>How do you ensure rider safety?</AccordionTrigger>
-                <AccordionContent>
-                  In‑ride SOS, trip‑share links, background checks, and anomaly alerts reduce risk across the platform.
-                </AccordionContent>
-              </AccordionItem>
-            </Accordion>
-          </CardContent>
-        </Card>
       </section>
 
       {/* Call to Action */}
