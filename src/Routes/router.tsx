@@ -11,6 +11,7 @@ import Register from "@/pages/Register";
 import { generateRoutes } from "@/Utils/generateRoutes";
 import { createBrowserRouter } from "react-router";
 import { adminSidebarItems } from "./AdminSidebarItems";
+import AboutPage from "@/pages/About";
 
 
 const router = createBrowserRouter([
@@ -25,7 +26,11 @@ const router = createBrowserRouter([
       {
         Component:RiderForm,
         path:'/requestForm'
-      }
+      },
+      {
+        Component:AboutPage,
+        path:'/about'
+      },
     ]
   },
   {
