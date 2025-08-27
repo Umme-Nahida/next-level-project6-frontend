@@ -1,4 +1,4 @@
-import TravelLogin from "@/assets/images/Login.jpg";
+import TravelLogin from "@/assets/Images/imgLogin.jpg";
 import { Link } from "react-router";
 import Logo from "@/assets/Icons/logo";
 import { LoginForm } from "@/components/Authentication/LoginForm";
