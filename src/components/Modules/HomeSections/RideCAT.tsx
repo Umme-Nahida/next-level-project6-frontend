@@ -9,7 +9,7 @@ export default function RideCTA() {
 
   return (
     <MotionConfig>
-      <section className="bg-gradient-to-r from-sky-50 to-white py-16 px-4 sm:px-6 lg:px-12">
+      <section className="bg-gradient-to-r from-sky-50 to-green-400 py-16 px-4 sm:px-6 lg:px-12">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
@@ -20,7 +20,7 @@ export default function RideCTA() {
               transition={{ duration: 0.45 }}
               className="space-y-5"
             >
-              <p className="inline-flex items-center gap-2 text-sm font-medium text-sky-600">
+              <p className="inline-flex items-center gap-2 text-sm font-medium text-green-600">
                 <Truck className="w-4 h-4" />
                 Ride Management
               </p>
@@ -39,7 +39,7 @@ export default function RideCTA() {
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setOpen(true)}
-                  className="cursor-pointer inline-flex items-center gap-2 bg-sky-600 text-white px-5 py-3 rounded-xl shadow-md text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-500"
+                  className="cursor-pointer inline-flex items-center gap-2 bg-green-600 text-white px-5 py-3 rounded-xl shadow-md text-sm font-medium focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-500"
                 >
                  
                     Request Ride
@@ -60,8 +60,8 @@ export default function RideCTA() {
 
               <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6 text-sm">
                 <div className="flex items-start gap-3">
-                  <div className="rounded-lg bg-sky-100 p-3">
-                    <MapPin className="w-5 h-5 text-sky-600" />
+                  <div className="rounded-lg bg-emerald-100 p-3">
+                    <MapPin className="w-5 h-5 text-green-600" />
                   </div>
                   <div>
                     <div className="font-semibold text-slate-900">Pickup-to-Drop Tracking</div>
