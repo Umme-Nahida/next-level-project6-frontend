@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { motion } from "framer-motion";
+import { Link } from "react-router";
 
 
 export function FeaturesPage() {
@@ -55,9 +56,13 @@ export function FeaturesPage() {
             <p className="mt-4 text-slate-600 max-w-2xl">
               Real-time tracking, smart routing, auto-dispatch and detailed reporting — everything on one platform. Scale your business while reducing costs.
             </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <Button size="lg">View Demo</Button>
-              <Button size="lg" variant="outline">Documentation</Button>
+            <div className="mt-6 flex flex-wrap gap-3 ">
+              <Link to={"/requestForm"}>
+               <Button size="lg" className="cursor-pointer">Ride Request</Button>
+              </Link>
+              <Link to={"/about"}>
+                <Button className="cursor-pointer" size="lg" variant="outline">Learn More</Button>
+              </Link>
             </div>
             <div className="mt-8 grid grid-cols-2 sm:grid-cols-4 gap-3">
               {stats.map((s) => (
