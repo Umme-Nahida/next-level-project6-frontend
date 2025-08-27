@@ -3,6 +3,7 @@
 
 import { config } from "@/Config/config";
 import axios from "axios";
+import { any } from "zod";
 
 export const instanceAxios = axios.create({
   baseURL: config.baseUrl,
@@ -16,6 +17,14 @@ console.log(config.baseUrl)
 // Add a request interceptor
 instanceAxios.interceptors.request.use(function (config) {
     // Do something before request is sent
+     const token = localStorage.getItem("token");
+     console.log("catch the token",token) // token stored in localStorage
+  if (token) {
+    config.headers = {
+      ...config.headers as any,
+      authorization: `${token}`,
+    };
+  }
     return config;
   }, function (error) {
     // Do something with request error

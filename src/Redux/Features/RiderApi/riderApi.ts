@@ -3,14 +3,15 @@ import { baseApi } from "@/Redux/baseApi";
 
 const riderApi = baseApi.injectEndpoints({
     endpoints:(builder)=>({
-     register:builder.mutation({
-        query:(userInfo)=>({
-            url:'user/register',
+     rideRequest:builder.mutation({
+        query:(riderInfo)=>({
+            url:'rides/request',
             method:"POST",
-            data: userInfo
+            data: riderInfo,
+             credentials: "include", 
         })
      })
     })
 })
 
-export const {useRegisterMutation} = riderApi
+export const {useRideRequestMutation} = riderApi

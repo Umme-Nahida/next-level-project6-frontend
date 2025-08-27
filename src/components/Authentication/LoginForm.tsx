@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
-import {  useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
+import { useLoginMutation } from "@/Redux/Features/authApi/authApi";
+import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
 import { Link, useNavigate } from "react-router";
 import { toast } from "sonner";
 
@@ -17,18 +18,57 @@ export function LoginForm({
   className,
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
+  const [login] = useLoginMutation()
   const navigate = useNavigate();
   const form = useForm();
-  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
-    try {
-    //   const res = await login(data).unwrap();
-    //   console.log(res);
-    } catch (err:any) {
-      console.error(err);
 
-      if (err.status === 401) {
-        toast.error("Your account is not verified");
-        navigate("/verify", { state: data.email });
+
+  const onSubmit: SubmitHandler<FieldValues> = async (data) => {
+
+    try {
+      const res = await login(data).unwrap();
+      console.log("this Response:", res);
+
+      if (res.data && res.success) {
+        toast.success("you are login has been successfully");
+        navigate("/");
+      }
+
+
+      if (res.data && res.status === 401) {
+        toast.error(res.data.message || "user does not exist");
+        navigate("/");
+      }
+
+
+
+      // if error
+      if (res.error && typeof res.error === "object" && "data" in res.error) {
+        // Type assertion to access error properties
+        const error = res.error as { data?: any; status?: number };
+        toast.error(error.data?.message);
+
+        if (
+          error.status === 400 &&
+          error.data?.errorSources &&
+          error.data?.message === "ZodError"
+        ) {
+          const errs = error.data.errorSources;
+
+          if (errs) {
+            errs.forEach((err: { path: string; message: string }) => {
+              form.setError(err.path as any, {
+                type: "server",
+                message: err.message,
+              });
+            });
+          }
+        }
+      }
+    } catch (error:any) {
+      console.log("catch error:", error)
+      if(error.status===401 || error.data){
+        toast.error(error.data.message || "invalid login Cridentials")
       }
     }
   };
