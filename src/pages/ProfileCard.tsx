@@ -93,13 +93,15 @@ const ProfileCard = ({ profile }: any) => {
                 toast.success("Password has been change successfully")
             }
             if (res?.error) {
-                toast.error((res.error as any)?.error?.data.message || "password change is failed")
+                toast.error((res.error as any)?.error?.data.message || (res?.error as any)?.err?.data.message || (res?.error as any)?.message || "password change is failed")
                 console.log(res)
+                return
 
             }
         } catch (err: any) {
             toast.error((err?.error as any)?.data.message || (err?.error as any)?.error?.data.message || "password change is failed")
             console.log(err)
+            return
         }
 
     }
