@@ -1,11 +1,13 @@
 import AdminProfile from "@/components/Modules/Admin/AdminProfile";
+import AllAdmin from "@/components/Modules/Admin/AllAdmin";
+import AllRides from "@/components/Modules/Admin/AllRides";
+import AllUser from "@/components/Modules/Admin/AllUser";
 import Analytics from "@/components/Modules/Admin/Analytics";
 
 
 export const adminSidebarItems = [
     {
       title: "Dashboard",
-      url: "#",
       items: [
         {
           title: "Admin Profile",
@@ -18,9 +20,19 @@ export const adminSidebarItems = [
           component: Analytics
         },
         {
-          title: "Right OverSight",
-          url: "/admin/ride-oversight",
-          component: Analytics
+          title: "All Ride OverSight",
+          url: "/admin/all-rides",
+          component: AllRides
+        },
+        {
+          title: "Admin Management",
+          url: "/admin/admin-management",
+          component: AllAdmin
+        },
+        {
+          title: "All User Management",
+          url: "/admin/all-user",
+          component: AllUser
         },
       ],
     }

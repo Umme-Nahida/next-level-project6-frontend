@@ -1,9 +1,6 @@
 import App from "@/App";
 import DashboardLayout from "@/components/Layout/DashboardLayout";
-import Analytics from "@/components/Modules/Admin/Analytics";
 import RiderForm from "@/components/Modules/Rider/RiderForm";
-import RiderHistory from "@/components/Modules/Rider/RiderHistory";
-import UserProfile from "@/components/Modules/Rider/UserProfile";
 import Home from "@/pages/Home";
 import Login from "@/pages/Login";
 import Register from "@/pages/Register";
@@ -14,6 +11,15 @@ import AboutPage from "@/pages/About";
 import FAQPage from "@/pages/FAQ";
 import { FeaturesPage } from "@/pages/Feature";
 import { Contact } from "@/pages/Contact";
+import { userSidebarItems } from "./UserSidebarItems";
+import { driverSidebarItems } from "./DriverSidebarItems";
+import RiderDetails from "@/components/Modules/Rider/RiderDetails";
+import AccountGuard from "@/components/Modules/Shared/AccountGuard";
+import AccountStatusPage from "@/components/Modules/Shared/AccountStatusPage";
+import { Component } from "react";
+import AdminProfile from "@/components/Modules/Admin/AdminProfile";
+import UserProfile from "@/components/Modules/Rider/UserProfile";
+import DriverProfile from "@/components/Modules/Driver/DriverProfile";
 
 
 const router = createBrowserRouter([
@@ -48,27 +54,31 @@ const router = createBrowserRouter([
     ]
   },
   {
-    Component:DashboardLayout,
+    Component:() => (
+    <AccountGuard>
+      <DashboardLayout />
+    </AccountGuard>
+  ),
     path: "/admin",
-    children:[...generateRoutes(adminSidebarItems)]
+    children:[{index:true, Component: AdminProfile} ,...generateRoutes(adminSidebarItems)]
   },
   {
-    Component:DashboardLayout,
+    Component:() => (
+    <AccountGuard>
+      <DashboardLayout />
+    </AccountGuard>
+  ),
     path: "/user",
-    children:[
-      {
-        Component:UserProfile,
-        path:'profile'
-      },
-      {
-        Component:Analytics,
-        path:'analytics'
-      },
-      {
-        Component:RiderHistory,
-        path:'riderHistory'
-      }
-    ]
+    children:[{index:true, Component: UserProfile}, ...generateRoutes(userSidebarItems),{path: "/user/rideDetails/:rideId", Component: RiderDetails}]
+  },
+  {
+    Component:() => (
+    <AccountGuard>
+      <DashboardLayout />
+    </AccountGuard>
+  ),
+    path: "/driver",
+    children:[{index:true, Component: DriverProfile},...generateRoutes(driverSidebarItems)]
   },
   {
     Component:Register,
@@ -77,6 +87,10 @@ const router = createBrowserRouter([
   {
     Component:Login,
     path:'/login'
+  },
+  {
+    Component:AccountStatusPage,
+    path:'/accountSuspentUser'
   }
 ]);
 

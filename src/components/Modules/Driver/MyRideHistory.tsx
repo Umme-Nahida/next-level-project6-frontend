@@ -1,4 +1,3 @@
-import { useRideHistoryQuery } from "@/Redux/Features/RiderApi/riderApi";
 
 
 import { useState } from "react";
@@ -6,8 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import AllPagination from "../Shared/Pagination";
-import { SkeletonCard } from "../Shared/SkeletonCard";
-import { Link } from "react-router";
+import { useMyRideHistoryQuery } from "@/Redux/Features/DriverApi/driverApi";
 
 
 // type Ride = {
@@ -19,29 +17,27 @@ import { Link } from "react-router";
 //     createdAt: string;
 // };
 
-export default function RideHistory() {
-
+export default function MyRideHistory() {
+    
 
     // filters
     const [searchTerm, setSearchTerm] = useState("");
-    const [status, setStatus] = useState("all");
     const [minFare, setMinFare] = useState("");
     const [maxFare, setMaxFare] = useState("");
     const [page, setPage] = useState(1);
-    const limit = 5;
+     const limit = 5;
 
 
-    const { data, error, isLoading } = useRideHistoryQuery({
+    const { data, error, isLoading } = useMyRideHistoryQuery({
         page,
         limit,
         searchTerm,
-        status,
         minFare,
         maxFare
     });
     const meta = data?.data?.meta;
 
-    if (isLoading) return <SkeletonCard />
+    if (isLoading) return <p>Loading...</p>;
     if (error) return <p>Error fetching data</p>;
 
     console.log(data)
@@ -49,7 +45,7 @@ export default function RideHistory() {
 
     return (
         <div className="p-6 space-y-4">
-            <h1 className="text-3xl mb-10 text-center font-medium">My Ride History</h1>
+             <h1 className="text-3xl mb-10 text-center font-medium">My Ride History</h1>
             {/* 🔍 Filters */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 <Input
@@ -57,21 +53,6 @@ export default function RideHistory() {
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                 />
-
-                <Select onValueChange={setStatus} value={status}>
-                    <SelectTrigger>
-                        <SelectValue placeholder="Filter by status" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="all">All</SelectItem>
-                        <SelectItem value="completed">Completed</SelectItem>
-                        <SelectItem value="cancelled">Cancelled</SelectItem>
-                        <SelectItem value="requested">Requested</SelectItem>
-                        <SelectItem value="picked_up">Picked up</SelectItem>
-                        <SelectItem value="in_transit">In Transit</SelectItem>
-                    </SelectContent>
-                </Select>
-
                 <Input
                     type="number"
                     placeholder="Min Fare"
@@ -96,30 +77,30 @@ export default function RideHistory() {
                         <div key={ride._id} className="p-4 border rounded-lg shadow-sm flex justify-between items-center ">
                             <div className="space-y-2">
                                 <p className="font-medium">{ride?.pickupLocation.address} → {ride?.destinationLocation.address}</p>
-
-                                {/* driver info */}
+                               
+                               {/* driver info */}
                                 {
                                     ride.driver &&
 
                                     <div className="flex items-center gap-2">
                                         <p className="text-sm text-gray-500">
-                                            <span className="text-black font-medium">driver_Name: </span> {ride?.driver?.name}
+                                           <span className="text-black font-medium">driver_Name: </span> {ride?.driver?.name}
                                         </p>
                                         <p className="text-sm text-gray-500">
-                                            <span className="text-black font-medium">Driver_Email:</span> {ride?.driver?.email}
+                                           <span className="text-black font-medium">Driver_Email:</span> {ride?.driver?.email}
                                         </p>
                                     </div>}
 
 
-                                {/* rider info */}
-                                <div className="flex items-center gap-2">
-                                    <p className="text-sm text-gray-500">
-                                        <span className="text-black font-medium">Rider_Name:</span> {ride?.rider?.name}
-                                    </p>
-                                    <p className="text-sm text-gray-500">
-                                        <span className="text-black font-medium"> Rider_Email:</span> {ride?.rider?.email}
-                                    </p>
-                                </div>
+                                     {/* rider info */}
+                                    <div className="flex items-center gap-2">
+                                        <p className="text-sm text-gray-500">
+                                            <span className="text-black font-medium">Rider_Name:</span> {ride?.rider?.name}
+                                        </p>
+                                        <p className="text-sm text-gray-500">
+                                            <span className="text-black font-medium"> Rider_Email:</span> {ride?.rider?.email}
+                                        </p>
+                                    </div>
                                 <p className="text-sm text-gray-500">
                                     {new Date(ride?.createdAt).toLocaleString()}
                                 </p>
@@ -127,11 +108,6 @@ export default function RideHistory() {
                             <div className="text-right">
                                 <p className="font-semibold">${ride?.fare}</p>
                                 <p className="text-sm capitalize">{ride?.status}</p>
-                                <Link to={`/user/rideDetails/${ride?._id}`}>
-                                    <Button className="mt-5 cursor-pointer">Details</Button>
-
-                                </Link>
-
                             </div>
                         </div>
                     ))
@@ -140,13 +116,13 @@ export default function RideHistory() {
                 )}
             </div>
 
-            {/* added pagination here */}
+              {/* added pagination here */}
             <div className="my-5">
                 <AllPagination
                     limit={meta?.limit}
                     page={meta?.page}
                     total={meta?.total}
-                    onPageChange={(newPage: number) => setPage(newPage)}
+                    onPageChange={(newPage:number) => setPage(newPage)}
                 ></AllPagination>
             </div>
         </div>

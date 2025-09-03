@@ -1,4 +1,5 @@
 import Logo from "@/assets/Icons/logo";
+import { Link } from "react-router";
 
 const Footer = () => {
     return (
@@ -150,21 +151,21 @@ const Footer = () => {
 
                         <ul className="mt-6 space-y-4 text-sm">
                             <li>
-                                <a href="#" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
+                                <Link to={"/about"} className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
                                     About
-                                </a>
+                                </Link>
                             </li>
 
                             <li>
-                                <a href="#" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
+                                <Link to={"/"} className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
                                     Meet the Team
-                                </a>
+                                </Link>
                             </li>
 
                             <li>
-                                <a href="#" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
-                                    Accounts Review
-                                </a>
+                                <Link to={"/"} className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
+                                    Account Review 
+                                </Link>
                             </li>
                         </ul>
                     </div>
@@ -174,21 +175,21 @@ const Footer = () => {
 
                         <ul className="mt-6 space-y-4 text-sm">
                             <li>
-                                <a href="#" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
+                                <Link to={"/contact"} className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
                                     Contact
-                                </a>
+                                </Link>
                             </li>
 
                             <li>
-                                <a href="#" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
+                                <Link to="/FAQ" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
                                     FAQs
-                                </a>
+                                </Link>
                             </li>
 
                             <li>
-                                <a href="#" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
+                                <Link to="/" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
                                     Live Chat
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>
@@ -198,27 +199,27 @@ const Footer = () => {
 
                         <ul className="mt-6 space-y-4 text-sm">
                             <li>
-                                <a href="#" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
+                                <Link to="/" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
                                     Accessibility
-                                </a>
+                                </Link>
                             </li>
 
                             <li>
-                                <a href="#" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
+                                <Link to="/" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
                                     Returns Policy
-                                </a>
+                                </Link>
                             </li>
 
                             <li>
-                                <a href="#" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
+                                <Link to="/" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
                                     Refund Policy
-                                </a>
+                                </Link>
                             </li>
 
                             <li>
-                                <a href="#" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
+                                <Link to="/" className="text-gray-700 transition hover:opacity-75 dark:text-gray-200">
                                     Hiring-3 Statistics
-                                </a>
+                                </Link>
                             </li>
                         </ul>
                     </div>

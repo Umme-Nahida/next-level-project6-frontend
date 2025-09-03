@@ -16,7 +16,7 @@ console.log(config.baseUrl)
 // Add a request interceptor
 instanceAxios.interceptors.request.use(function (config) {
     // Do something before request is sent
-     const token = localStorage.getItem("token");
+     const token = localStorage.getItem("refreshToken");
      console.log("catch the token",token) // token stored in localStorage
   if (token) {
     config.headers = {

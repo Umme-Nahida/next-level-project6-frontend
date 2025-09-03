@@ -11,12 +11,13 @@ import {
     SelectTrigger,
     SelectValue,
 } from "@/components/ui/select";
-import { useRideRequestMutation } from "@/Redux/Features/RiderApi/riderApi";
+import { useEstimateMutation, useRideRequestMutation } from "@/Redux/Features/RiderApi/riderApi";
 import { toast } from "sonner";
 
 
 
 export default function RiderForm() {
+    const [estimate] = useEstimateMutation()
     const [pickup, setPickup] = useState("");
     const [destination, setDestination] = useState("");
     const [paymentMethod, setPaymentMethod] = useState("");
@@ -31,17 +32,17 @@ export default function RiderForm() {
                 destinationLocation: destination
             }
 
-            const res = await riderRequest(rideRequestInfo)
-            console.log(res)
-            if (res.data) {
+            const res = await estimate(rideRequestInfo)
 
-                setFare(res.data.estimatedFare);
-                toast.success(res.data.message || "Ride Request created successfully")
+            console.log("estimatedFare", res.data)
+            if (res.data) {
+                setFare(res.data?.data?.estimatedFare)
             }
+
             if (res.error) {
-                toast.error((res.error as any).data.message || "Ride Request has been failed")
+                toast.error((res.error as any).data.message || "estimate fare has been failed")
             }
-            console.log("Ride Requested:", rideRequestInfo);
+            console.log("estimate:", rideRequestInfo);
 
         } catch (error) {
             console.error("Error estimating fare:", error);
@@ -63,15 +64,15 @@ export default function RiderForm() {
                 lng: 90.430191,
                 address: destination
             },
-            paymentMethod:paymentMethod,
-            fare:fare
+            paymentMethod: paymentMethod,
+            fare: fare
         }
 
         const res = await riderRequest(rideRequestInfo)
         console.log(res)
         if (res.data) {
 
-            setFare(res.data.estimatedFare);
+            // setFare(res.data.estimatedFare);
             toast.success(res.data.message || "Ride Request created successfully")
         }
         if (res.error) {
@@ -81,58 +82,61 @@ export default function RiderForm() {
     };
 
     return (
-        <form
-            onSubmit={handleSubmit}
-            className="max-w-md mx-auto my-10 p-6 space-y-4 border rounded-2xl shadow-md"
-        >
-            <div>
-                <Label className="mb-2" htmlFor="pickup">Pickup Location</Label>
-                <Input
-                    id="pickup"
-                    value={pickup}
-                    onChange={(e) => setPickup(e.target.value)}
-                    placeholder="Enter pickup location"
-                    required
-                />
-            </div>
+        <div>
+            <h1 className="text-3xl text-center font-medium">Request For your Ride</h1>
+            <form
+                onSubmit={handleSubmit}
+                className="max-w-2/5 mx-auto my-10 p-10 space-y-4 border rounded-2xl shadow-md"
+            >
+                <div>
+                    <Label className="mb-2" htmlFor="pickup">Pickup Location</Label>
+                    <Input
+                        id="pickup"
+                        value={pickup}
+                        onChange={(e) => setPickup(e.target.value)}
+                        placeholder="Enter pickup location"
+                        required
+                    />
+                </div>
 
-            <div>
-                <Label className="mb-2" htmlFor="destination">Destination</Label>
-                <Input
-                    id="destination"
-                    value={destination}
-                    onChange={(e) => setDestination(e.target.value)}
-                    placeholder="Enter destination"
-                    required
-                />
-            </div>
+                <div>
+                    <Label className="mb-2" htmlFor="destination">Destination</Label>
+                    <Input
+                        id="destination"
+                        value={destination}
+                        onChange={(e) => setDestination(e.target.value)}
+                        placeholder="Enter destination"
+                        required
+                    />
+                </div>
 
-            <div>
-                <Label className="mb-2">Payment Method</Label>
-                <Select value={paymentMethod} onValueChange={setPaymentMethod}>
-                    <SelectTrigger>
-                        <SelectValue placeholder="Select Payment Method" />
-                    </SelectTrigger>
-                    <SelectContent>
-                        <SelectItem value="Cash">Cash</SelectItem>
-                        <SelectItem value="Card">Card</SelectItem>
-                        <SelectItem value="Wallet">Wallet</SelectItem>
-                    </SelectContent>
-                </Select>
-            </div>
+                <div>
+                    <Label className="mb-2">Payment Method</Label>
+                    <Select value={paymentMethod} onValueChange={setPaymentMethod}>
+                        <SelectTrigger>
+                            <SelectValue placeholder="Select Payment Method" />
+                        </SelectTrigger>
+                        <SelectContent>
+                            <SelectItem value="Cash">Cash</SelectItem>
+                            <SelectItem value="Card">Card</SelectItem>
+                            <SelectItem value="Wallet">Wallet</SelectItem>
+                        </SelectContent>
+                    </Select>
+                </div>
 
-            <div className="flex items-center gap-2">
-                <Button type="button" onClick={handleEstimateFare}>
-                    Estimate Fare
+                <div className="flex items-center gap-2">
+                    <Button className="cursor-pointer" type="button" onClick={handleEstimateFare}>
+                        Estimate Fare
+                    </Button>
+                    {fare !== null && (
+                        <span className="font-semibold">Estimated Fare: ${fare}</span>
+                    )}
+                </div>
+
+                <Button type="submit" className="w-full cursor-pointer">
+                    Request Ride
                 </Button>
-                {fare !== null && (
-                    <span className="font-semibold">Estimated Fare: ${fare}</span>
-                )}
-            </div>
-
-            <Button type="submit" className="w-full">
-                Request Ride
-            </Button>
-        </form>
+            </form>
+        </div>
     );
 }
