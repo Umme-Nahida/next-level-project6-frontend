@@ -1,69 +1,122 @@
-# React + TypeScript + Vite
+Link_Link: https://assignment-6-neon-eight.vercel.app
+Backend Link_Link: https://assingment-5-seven.vercel.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+<h2>✅Project Overview</h2>
+The Ride Management System is a web application designed to manage and monitor rides efficiently. It provides a platform for admins, drivers, and riders to interact seamlessly, ensuring smooth booking, tracking, and ride completion processes.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+<h2>✅Project Features</h2>
 
-## Expanding the ESLint configuration
+User authentication (Admin, Driver, Rider roles)
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Ride booking and cancellation
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Ride status tracking (requested, ongoing, completed, canceled)
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+Driver approval and suspension management
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Fare calculation and payment integration
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Advanced search and filtering (by date, status, driver, rider)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Dashboard with analytics and ride history
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+
+<h2>✅Athentication</h2>
+
+| Method | Endpoint           | Description             |
+| ------ | ------------------ | ----------------------- |
+| POST   | /api/auth/register | Register a new user     |
+| POST   | /api/auth/login    | Login and get JWT token |
+| post   | /api/auth/logout   | logout user             |
+
+
+
+<h2>✅Admin API Endpoints</h2>
+| Method | Endpoint                        | Description            |
+| ------ | ------------------------------- | ---------------------- |
+| GET    | /api/admin/users                | View all users         |
+| GET    | /api/admin/drivers              | View all drivers       |
+| PATCH  | /api/admin/users/block/\:id     | Block a user account   |
+| PATCH  | /api/admin/users/unblock/\:id   | Unblock a user account |
+| PATCH  | /api/admin/drivers/approve/\:id | Approve a driver       |
+| PATCH  | /api/admin/drivers/suspend/\:id | Suspend a driver       |
+
+
+
+<h2>✅Rider APIs</h2>
+| Method | Endpoint               | Description                             |
+| ------ | ---------------------- | --------------------------------------- |
+| POST   | /api/rides/request     | Request a ride (pickup & destination)   |
+| PATCH  | /api/rides/cancel/\:id | Cancel own ride (before driver accepts) |
+| GET    | /api/rides/me          | View own ride history                   |
+
+
+
+<h2>✅Driver APIs</h2>
+| Method | Endpoint                   | Description                                 |
+| ------ | -------------------------- | ------------------------------------------- |
+| PATCH  | /api/rides/accept/\:id     | Accept a ride request                       |
+| PATCH  | /api/rides/reject/\:id     | Reject a ride request (optional)            |
+| PATCH  | /api/rides/\:id/pickup     | Mark ride as picked up                      |
+| PATCH  | /api/rides/\:id/in-transit | Mark ride as in transit                     |
+| PATCH  | /api/rides/\:id/complete   | Mark ride as completed                      |
+| GET    | /api/rides/earnings        | View completed rides & total earnings       |
+| PATCH  | /api/drivers/availability  | Set driver availability (ACTIVE / INACTIVE) |
+
+<h2>✅Extra Features</h2>
+*Password hashing (bcrypt)
+
+*JWT-based login & route protection
+
+*User blocking/unblocking by admin
+
+*Driver approval/suspension by admin
+
+*Complete ride history for riders
+
+*Earnings history for drivers
+
+*Timestamps history for each ride status
+
+
+
+<h2>✅Tech Stack</h2>
+Frontend Framework: React (with React Router for routing)
+State Management: Redux Toolkit, RTK Query, Axios 
+Language: TypeScript
+Styling: Tailwind CSS with Shadcn UI
+Backend API: Node.js/Express, MongoDB, JWT + bcrypt (Secure Authentication)
+Enhancements: recharts (data visualization), react-hot-toast (notifications)
+
+
+<h2>✅Setup Instructions</h2>
+
+Clone the repository from GitHub.
+
+git clone https://github.com/your-username/ride-management.git
+
+
+Go inside the project folder.
+
+cd ride-management
+
+
+Install all required dependencies.
+
+npm install
+
+
+Create a .env file in the root directory and add your environment variables (Database URI, JWT secret, Stripe key, etc.).
+
+Start the backend server.
+
+npm run server
+
+
+Start the frontend development server.
+
+npm run dev
+
+
+Open your browser and visit: http://localhost:3000

@@ -88,8 +88,8 @@ export default function Component() {
         <header className="bg-secondary sticky top-0 z-20 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex h-16 items-center justify-between">
-                    <div className="md:flex md:items-center md:gap-2">
-                        <Logo /> <span className="font-medium text-xl">Find Rider</span>
+                    <div className="flex items-center  md:gap-2">
+                        <Logo /> <span className="font-medium text-xl sm:text-xl ">Find Rider</span>
                     </div>
 
                     <div className="hidden md:block">

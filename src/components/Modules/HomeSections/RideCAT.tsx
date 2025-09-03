@@ -115,7 +115,7 @@ export default function RideCTA() {
               <div className="mt-8 flex items-center gap-4">
                 <button
                   onClick={() => setOpen(true)}
-                  className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-sky-600 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-500"
+                  className="flex-1 inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl bg-green-600 text-white font-semibold shadow-md hover:shadow-lg focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-500"
                 >
                   Dispatch Ride
                 </button>
