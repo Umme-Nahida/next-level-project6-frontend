@@ -17,14 +17,13 @@ import RideTableSkeleton from "../Shared/RideTableSkeleton"
 
 
 export function RideOversightTable() {
-  const [statusFilter, setStatusFilter] = useState("")
+  // const [statusFilter, setStatusFilter] = useState("")
   const [searchTerm, setSearchTerm] = useState("");
   const [driverFilter, setDriverFilter] = useState("")
   const [riderFilter, setRiderFilter] = useState("")
   const [dateFilter, setDateFilter] = useState("")
-  const [page, setPage] = useState(1)
+  const page = 1
   const limit = 5;
-
    const {data, error, isLoading} = useAllRideOversightQuery({ page,limit, searchTerm, driver:driverFilter, rider:riderFilter, date:dateFilter })
  
  if (isLoading) return <RideTableSkeleton />
@@ -32,8 +31,8 @@ export function RideOversightTable() {
   if(error){
     return <p>Error is occoured</p>
   }
-console.log("alldata:", statusFilter, driverFilter, riderFilter, dateFilter)
-  console.log('data', data.data.data)
+// console.log("alldata:", statusFilter, driverFilter, riderFilter, dateFilter)
+//   console.log('data', data.data.data)
   return (
     <Card className="p-4 w-full max-w-6xl mx-auto">
       <CardContent>
@@ -93,7 +92,7 @@ console.log("alldata:", statusFilter, driverFilter, riderFilter, dateFilter)
 
         {/* Reset Filters */}
         <div className="flex justify-end mt-4">
-          <Button variant="outline" onClick={() => {setStatusFilter(""); setDriverFilter(""); setRiderFilter(""); setDateFilter("")}}>Reset Filters</Button>
+          <Button variant="outline" onClick={() => { setDriverFilter(""); setRiderFilter(""); setDateFilter("")}}>Reset Filters</Button>
         </div>
       </CardContent>
     </Card>

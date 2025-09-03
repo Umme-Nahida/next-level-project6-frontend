@@ -1,4 +1,4 @@
-import { act, useId, useState } from "react"
+import { useId, useState } from "react"
 
 import { Label } from "@/components/ui/label"
 import { Switch } from "@/components/ui/switch"

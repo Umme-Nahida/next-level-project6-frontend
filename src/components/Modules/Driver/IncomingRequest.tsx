@@ -4,7 +4,7 @@ import IncomingRequestCard from "./IncomingRequestCard";
 
 const IncomingRequest = () => {
 
-    const { data, isLoading, isError, refetch } = useIncomingRequestsQuery(undefined)
+    const { data, isLoading, isError,} = useIncomingRequestsQuery(undefined)
 
     if (isLoading) {
         <p>is loading.....</p>

@@ -16,7 +16,6 @@ import { driverSidebarItems } from "./DriverSidebarItems";
 import RiderDetails from "@/components/Modules/Rider/RiderDetails";
 import AccountGuard from "@/components/Modules/Shared/AccountGuard";
 import AccountStatusPage from "@/components/Modules/Shared/AccountStatusPage";
-import { Component } from "react";
 import AdminProfile from "@/components/Modules/Admin/AdminProfile";
 import UserProfile from "@/components/Modules/Rider/UserProfile";
 import DriverProfile from "@/components/Modules/Driver/DriverProfile";

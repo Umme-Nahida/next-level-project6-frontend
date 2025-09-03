@@ -2,21 +2,6 @@ import ProfileCard from "@/pages/ProfileCard";
 import { useGetUserQuery } from "@/Redux/Features/authApi/authApi";
 
 
-const profile = {
-    fullName: "Mohammad Emam Uddin",
-    email: "emamskingdom@gmail.com",
-    studentId: "RESET9-0730",
-    mobile: "01790910529",
-};
-
-const devices = [
-    {
-        serial: 1,
-        platform: "Windows 10",
-        date: "28-08-2025 08:36 PM",
-    },
-];
-
 const UserProfile = () => {
 
     const { data, error, isLoading } = useGetUserQuery(undefined);

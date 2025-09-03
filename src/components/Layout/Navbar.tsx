@@ -12,8 +12,6 @@ export default function Component() {
     const [logOut, { error: logoutErr, isLoading: signOutLoading }] = useLogOutMutation()
 
     const user = data?.user?.user;
-    const blocked = user?.role === "RIDER" && 'blocked'
-    const suspended = user?.role === "DRIVER" && 'suspended'
 
     if (isLoading || signOutLoading) return <p>Loading...</p>;
 
